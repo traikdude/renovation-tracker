@@ -1,0 +1,65 @@
+# Google Sheets Configuration for Renovation Tracker OCR Pipeline
+# Copy this file to config.yaml and fill in your actual values
+
+google_sheets:
+  # Your Google Sheet ID (extracted from the URL)
+  # Example: https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit
+  spreadsheet_id: "YOUR_SPREADSHEET_ID_HERE"
+
+  # Service account credentials file path
+  credentials_file: "./credentials.json"
+
+  # Worksheet name mappings
+  worksheets:
+    budget: "Budget & Expenses"
+    tasks: "Task Tracker"
+    layout: "Property Layout"
+    dashboard: "Dashboard"
+    settings: "Settings"
+
+# OCR Configuration
+ocr:
+  # Image folder path
+  image_folder: "./images"
+
+  # Output folder for backup CSV/Excel files
+  output_folder: "./extracted_data"
+
+  # Tesseract configuration
+  # PSM 6 = Assume a single uniform block of text
+  # PSM 11 = Sparse text. Find as much text as possible in no particular order
+  # OEM 3 = Default, based on what is available
+  tesseract_config: "--psm 6 --oem 3"
+
+  # Image file mappings (image filename -> target worksheet)
+  # Add your image files and their target worksheets here
+  image_mappings:
+    property_layout.jpg: "Property Layout"
+    financial_notes.jpg: "Budget & Expenses"
+    task_checklist.jpg: "Task Tracker"
+
+# Logging Configuration
+logging:
+  # Log file path
+  log_file: "./logs/ocr_pipeline.log"
+
+  # Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  log_level: "INFO"
+
+  # Enable console output
+  console_output: true
+
+# Data Upload Settings
+upload:
+  # Whether to append or replace data
+  mode: "append"  # Options: "append" or "replace"
+
+  # Add timestamp column to uploaded data
+  add_timestamp: true
+
+  # Retry settings for API calls
+  max_retries: 3
+  retry_delay: 2  # seconds
+
+  # Batch size for uploading rows
+  batch_size: 100

@@ -1,0 +1,16 @@
+# OCR Dependencies
+opencv-python
+pytesseract
+Pillow
+pandas
+numpy
+openpyxl
+
+# Google Sheets Integration
+gspread
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+
+# Configuration
+pyyaml
